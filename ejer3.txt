@@ -1,0 +1,30 @@
+#registro de estudiantes
+class Estudiante:
+    def __init__(self, nombre, edad, calificacion):
+        # Inicializa los atributos del estudiante
+        self.nombre = nombre
+        self.edad = edad
+        self.calificacion = calificacion
+    
+    def estado_aprobacion(self):
+        # Calcula si el estudiante aprobó o reprobó según su calificación
+        if self.calificacion >= 6:
+            return f"{self.nombre} ha aprobado con una calificación de {self.calificacion}."
+        else:
+            return f"{self.nombre} ha reprobado con una calificación de {self.calificacion}."
+    
+    def mostrar_info(self):
+        # Muestra la información del estudiante
+        print(f"Nombre: {self.nombre}")
+        print(f"Edad: {self.edad}")
+        print(f"Calificación: {self.calificacion}")
+
+# Ejemplo de uso de la clase Estudiante:
+estudiante1 = Estudiante("Daniel Castro", 17, 7.5)
+estudiante1.mostrar_info()
+print(estudiante1.estado_aprobacion())
+
+# Otro estudiante con calificación baja:
+estudiante2 = Estudiante("María Diaz", 22, 4.3)
+estudiante2.mostrar_info()
+print(estudiante2.estado_aprobacion())

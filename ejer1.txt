@@ -1,0 +1,26 @@
+# gestion de una biblioteca
+class Libro:
+    def __init__(self, titulo, autor, num_paginas):
+        # Inicializa los atributos del libro
+        self.titulo = titulo
+        self.autor = autor
+        self.num_paginas = num_paginas
+    
+    def mostrar_info(self):
+        # Muestra la información del libro
+        print(f"Título: {self.titulo}")
+        print(f"Autor: {self.autor}")
+        print(f"Número de páginas: {self.num_paginas}")
+    
+    def actualizar_paginas(self, nuevas_paginas):
+        # Actualiza el número de páginas del libro
+        self.num_paginas = nuevas_paginas
+        print(f"El número de páginas de '{self.titulo}' ha sido actualizado a {self.num_paginas} páginas.")
+
+# Ejemplo de uso de la clase Libro:
+libro1 = Libro("los pajaros vuelan", "pablo carmona", 227)
+libro1.mostrar_info()
+
+# Actualizando el número de páginas
+libro1.actualizar_paginas(280)
+libro1.mostrar_info()

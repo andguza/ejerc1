@@ -1,0 +1,61 @@
+#stock de una tienda
+
+class Producto:
+    def __init__(self, nombre, precio, stock):
+        # Inicializa los atributos del producto
+        self.nombre = nombre
+        self.precio = precio
+        self.stock = stock
+    
+    def verificar_disponibilidad(self, cantidad):
+        # Verifica si hay suficiente stock para la cantidad solicitada
+        if self.stock >= cantidad:
+            return True
+        else:
+            return False
+    
+    def vender(self, cantidad):
+        # Vende una cantidad de productos, si hay stock disponible
+        if self.verificar_disponibilidad(cantidad):
+            self.stock -= cantidad
+            print(f"Se han vendido {cantidad} unidades de {self.nombre}. Stock restante: {self.stock}.")
+        else:
+            print(f"No hay suficiente stock para vender {cantidad} unidades de {self.nombre}. Stock disponible: {self.stock}.")
+    
+    def reabastecer(self, cantidad):
+        # Reabastece el stock del producto
+        self.stock += cantidad
+        print(f"Se han agregado {cantidad} unidades de {self.nombre}. Stock actual: {self.stock}.")
+
+# Creación del objeto Producto con los valores iniciales
+producto = Producto("Cama", 1200, 10)
+
+# Verificar si hay 5 unidades disponibles
+if producto.verificar_disponibilidad(5):
+    print("Hay suficientes unidades disponibles para vender 5 camas.")
+else:
+    print("No hay suficientes unidades disponibles para vender 5 camas.")
+
+# Vender 3 unidades
+producto.vender(3)
+
+# Verificar si hay 8 unidades disponibles
+if producto.verificar_disponibilidad(8):
+    print("Hay suficientes unidades disponibles para vender 8 camas.")
+else:
+    print("No hay suficientes unidades disponibles para vender 8 camas.")
+
+# Intentar vender 8 unidades (debe fallar)
+producto.vender(8)
+
+# Reabastecer con 10 unidades adicionales
+producto.reabastecer(10)
+
+# Verificar nuevamente si hay 8 unidades disponibles
+if producto.verificar_disponibilidad(8):
+    print("Hay suficientes unidades disponibles para vender 8 camas.")
+else:
+    print("No hay suficientes unidades disponibles para vender 8 camas.")
+
+# Vender 8 unidades
+producto.vender(8)
