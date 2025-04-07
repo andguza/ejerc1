@@ -1,0 +1,58 @@
+class Libro:
+    def __init__(self, titulo, autor, num_paginas):
+        """Inicializa los atributos del libro"""
+        self.__titulo = titulo  # Atributo privado para el título
+        self.__autor = autor    # Atributo privado para el autor
+        self.__num_paginas = num_paginas  # Atributo privado para el número total de páginas
+        self.__pagina_actual = 1  # Página inicial (siempre empieza desde la página 1)
+    
+    def avanzar_paginas(self, paginas):
+        #Avanza un número de páginas, asegurando que no se supere el número total de páginas
+        if self.__pagina_actual + paginas > self.__num_paginas:
+            raise ValueError("No puedes avanzar más allá de la última página del libro")
+        else:
+            self.__pagina_actual += paginas
+    
+    def retroceder_paginas(self, paginas):
+        #Retrocede un número de páginas, asegurando que no se retroceda más allá de la página 1
+        if self.__pagina_actual - paginas < 1:
+            raise ValueError("No puedes retroceder más allá de la primera página del libro")
+        else:
+            self.__pagina_actual -= paginas
+    
+    def consultar_pagina_actual(self):
+        #Devuelve la página actual en la que se encuentra el lector
+        return self.__pagina_actual
+    
+    def obtener_informacion(self):
+        #Devuelve la información completa del libro (título, autor, total de páginas y página actual)
+        return f"Título: {self.__titulo}\nAutor: {self.__autor}\nTotal de páginas: {self.__num_paginas}\nPágina actual: {self.__pagina_actual}"
+# Crear un objeto de tipo Libro
+libro1 = Libro("Volar bajo", "Cristiano Muñoz", 450)
+
+# Obtener la información completa del libro
+informacion = libro1.obtener_informacion()
+print(informacion)
+
+# Consultar la página actual
+print(f"Página actual: {libro1.consultar_pagina_actual()}")
+
+# Avanzar 50 páginas
+libro1.avanzar_paginas(50)
+print(f"Página actual después de avanzar 50 páginas: {libro1.consultar_pagina_actual()}")
+
+# Retroceder 30 páginas
+libro1.retroceder_paginas(30)
+print(f"Página actual después de retroceder 30 páginas: {libro1.consultar_pagina_actual()}")
+
+# Intentar avanzar más allá de la última página (esto debería lanzar un error)
+try:
+    libro1.avanzar_paginas(500)
+except ValueError as e:
+    print(f"Error: {e}")
+
+# Intentar retroceder más allá de la página 1 (esto también debería lanzar un error)
+try:
+    libro1.retroceder_paginas(100)
+except ValueError as e:
+    print(f"Error: {e}")

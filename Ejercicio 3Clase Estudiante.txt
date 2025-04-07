@@ -1,0 +1,50 @@
+class Estudiante:
+    def __init__(self, nombre, edad):
+        #Inicializa los atributos del estudiante
+        self.__nombre = nombre  # Atributo privado para el nombre
+        self.__edad = edad      # Atributo privado para la edad
+        self.__notas = []       # Lista privada para las notas
+    
+    def agregar_nota(self, nota):
+        #Agrega una nueva nota a la lista, asegurando que esté entre 0 y 100
+        if 0 <= nota <= 100:
+            self.__notas.append(nota)
+        else:
+            raise ValueError("La nota debe estar entre 0 y 100")
+    
+    def calcular_promedio(self):
+        #Calcula y devuelve el promedio de las notas
+        if len(self.__notas) > 0:
+            promedio = sum(self.__notas) / len(self.__notas)
+            return promedio
+        else:
+            return 0  # Si no hay notas, el promedio es 0
+    
+    def consultar_nombre(self):
+        #Devuelve el nombre del estudiante
+        return self.__nombre
+    
+    def consultar_edad(self):
+        #Devuelve la edad del estudiante
+        return self.__edad
+# Crear un objeto de tipo Estudiante
+estudiante1 = Estudiante("Camila Diaz", 24)
+
+# Consultar el nombre y la edad del estudiante
+print(f"Nombre del estudiante: {estudiante1.consultar_nombre()}")
+print(f"Edad del estudiante: {estudiante1.consultar_edad()}")
+
+# Agregar notas al estudiante
+estudiante1.agregar_nota(95)
+estudiante1.agregar_nota(80)
+estudiante1.agregar_nota(72)
+
+# Consultar y mostrar el promedio de las notas
+promedio = estudiante1.calcular_promedio()
+print(f"Promedio de notas: {promedio}")
+
+# Intentar agregar una nota fuera del rango (esto debería lanzar un error)
+try:
+    estudiante1.agregar_nota(110)
+except ValueError as e:
+    print(f"Error: {e}")

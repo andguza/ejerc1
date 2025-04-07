@@ -1,0 +1,56 @@
+class Producto:
+    def __init__(self, nombre, precio):
+        #Inicializa los atributos del producto
+        self.__nombre = nombre  # Atributo privado para el nombre
+        self.__precio = precio  # Atributo privado para el precio
+        
+    def cambiar_precio(self, nuevo_precio):
+        #Cambia el precio del producto si el nuevo precio es mayor a 0
+        if nuevo_precio > 0:
+            self.__precio = nuevo_precio
+        else:
+            raise ValueError("El precio debe ser mayor que cero")
+    
+    def obtener_precio(self):
+        #Devuelve el precio actual del producto
+        return self.__precio
+    
+    def obtener_nombre(self):
+        #Devuelve el nombre del producto
+        return self.__nombre
+    
+    def aplicar_descuento(self, porcentaje_descuento):
+        #Aplica un descuento al precio, asegurando que el porcentaje esté entre 0 y 100
+        if 0 <= porcentaje_descuento <= 100:
+            descuento = self.__precio * (porcentaje_descuento / 100)
+            self.__precio -= descuento
+        else:
+            raise ValueError("El porcentaje de descuento debe estar entre 0 y 100")
+            
+            
+    # Crear un objeto de tipo Producto
+producto1 = Producto("TV", 1000)
+
+# Consultar el nombre y precio del producto
+print(f"Producto: {producto1.obtener_nombre()}")
+print(f"Precio inicial: {producto1.obtener_precio()}")
+
+# Cambiar el precio del producto
+producto1.cambiar_precio(1200)
+print(f"Nuevo precio: {producto1.obtener_precio()}")
+
+# Aplicar un descuento del 20%
+producto1.aplicar_descuento(20)
+print(f"Precio con descuento: {producto1.obtener_precio()}")
+
+# Intentar establecer un precio negativo (esto debería lanzar un error)
+try:
+    producto1.cambiar_precio(-500)
+except ValueError as e:
+    print(f"Error: {e}")
+
+# Intentar aplicar un descuento fuera de rango (esto también lanzará un error)
+try:
+    producto1.aplicar_descuento(150)
+except ValueError as e:
+    print(f"Error: {e}")

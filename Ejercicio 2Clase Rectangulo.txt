@@ -1,0 +1,50 @@
+class Rectangulo:
+    def __init__(self, largo, ancho):
+        #Inicializa los atributos del rectángulo
+        self.__largo = largo  # Atributo privado para el largo
+        self.__ancho = ancho  # Atributo privado para el ancho
+    
+    def cambiar_dimensiones(self, nuevo_largo, nuevo_ancho):
+        #Cambia las dimensiones del rectángulo si el largo y el ancho son mayores a cero
+        if nuevo_largo > 0 and nuevo_ancho > 0:
+            self.__largo = nuevo_largo
+            self.__ancho = nuevo_ancho
+        else:
+            raise ValueError("El largo y el ancho deben ser mayores que cero")
+    
+    def calcular_area(self):
+        #Calcula y devuelve el área del rectángulo
+        return self.__largo * self.__ancho
+    
+    def calcular_perimetro(self):
+        #Calcula y devuelve el perímetro del rectángulo
+        return 2 * (self.__largo + self.__ancho)
+    
+    def consultar_dimensiones(self):
+        #Devuelve las dimensiones actuales del rectángulo (largo y ancho)
+        return (self.__largo, self.__ancho)
+# Crear un objeto de tipo Rectangulo
+rectangulo1 = Rectangulo(10, 5)
+
+# Consultar las dimensiones del rectángulo
+dimensiones = rectangulo1.consultar_dimensiones()
+print(f"Dimensiones del rectángulo: Largo = {dimensiones[0]}, Ancho = {dimensiones[1]}")
+
+# Calcular y mostrar el área
+area = rectangulo1.calcular_area()
+print(f"Área del rectángulo: {area}")
+
+# Calcular y mostrar el perímetro
+perimetro = rectangulo1.calcular_perimetro()
+print(f"Perímetro del rectángulo: {perimetro}")
+
+# Cambiar las dimensiones del rectángulo
+rectangulo1.cambiar_dimensiones(15, 7)
+dimensiones = rectangulo1.consultar_dimensiones()
+print(f"Dimensiones actualizadas: Largo = {dimensiones[0]}, Ancho = {dimensiones[1]}")
+
+# Intentar establecer dimensiones no válidas (esto debería lanzar un error)
+try:
+    rectangulo1.cambiar_dimensiones(-5, 10)
+except ValueError as e:
+    print(f"Error: {e}")
